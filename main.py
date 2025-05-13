@@ -36,7 +36,6 @@ async def send_email(
 
 I am writing to express my interest in the {position} role. With 5 years of hands-on experience in building robust, scalable backend systems using Python and Django I bring a solid understanding of microservices architecture, cloud infrastructure (AWS & Azure), and API development.
 
-{add_your_experience}
 
 My current CTC is XX LPA, and my last working day is 2nd June 2025. I am actively seeking my next opportunity where I can contribute to impactful backend systems and continue growing technically.
 
