@@ -1,111 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Send Cover Letter Email</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f6f9;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100v;
-        }
+  <meta charset="UTF-8">
+  <title>Email Sender</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f4f8;
+      padding: 50px;
+      color: #333;
+    }
 
-        .form-container {
-            background: white;
-            padding: 30px 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 480px;
-        }
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
 
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #333;
-        }
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+    }
 
-        label {
-            font-weight: bold;
-            display: block;
-            margin-bottom: 5px;
-            margin-top: 15px;
-            color: #444;
-        }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
 
-        input[type="text"],
-        input[type="email"],
-        input[type="url"] {
-            width: 100%;
-            padding: 10px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-            font-size: 16px;
-            margin-top: 4px;
-        }
+    input[type="text"],
+    input[type="email"],
+    input[type="url"],
+    input[type="file"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
 
-        button {
-            margin-top: 20px;
-            padding: 10px 15px;
-            background-color: #0073e6;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-            width: 100%;
-        }
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100%;
+    }
 
-        button:hover {
-            background-color: #005bb5;
-        }
+    button:hover {
+      background-color: #0056b3;
+    }
 
-        .status {
-            margin-top: 20px;
-            text-align: center;
-            font-weight: bold;
-            color: green;
-        }
-
-        .error {
-            color: red;
-        }
-    </style>
+    .status {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 5px;
+      background-color: #e3f2fd;
+      color: #0d47a1;
+      border: 1px solid #90caf9;
+    }
+  </style>
 </head>
 <body>
-    <div class="form-container">
-        <h2>Send Cover Letter Email</h2>
-        <form action="/send-email" method="post">
-            <label for="email_id">Email ID:</label>
-            <input type="email" name="email_id" id="email_id" required>
+  <div class="container">
+    <h2>Send Resume Email</h2>
 
-            <label for="receiver_name">Receiver Name:</label>
-            <input type="text" name="receiver_name" id="receiver_name">
+    <form method="post" action="/send-email" enctype="multipart/form-data">
+      <label>Single Email (optional if CSV used):</label>
+      <input type="email" name="email_id" placeholder="hr@example.com">
 
-            <label for="position">Position:</label>
-            <input type="text" name="position" id="position" required>
+      <label>Upload CSV for Bulk Emails:</label>
+      <input type="file" name="csv_file" accept=".csv">
 
-            <label for="linkedin">LinkedIn URL:</label>
-            <input type="url" name="linkedin" id="linkedin" required
-                   value="https://www.linkedin.com/in/xxxx/">
+      <label>Receiver Name:</label>
+      <input type="text" name="receiver_name" required>
 
-            <label for="github">GitHub URL:</label>
-            <input type="url" name="github" id="github" required
-                   value="https://github.com/xxxxx">
+      <label>Position:</label>
+      <input type="text" name="position" required>
 
-            <button type="submit">Send Email</button>
-        </form>
+      <label>LinkedIn:</label>
+      <input type="url" name="linkedin" required>
 
-        {% if status %}
-            <div class="status {{ 'error' if 'Error' in status or '❌' in status else '' }}">
-                {{ status }}
-            </div>
-        {% endif %}
-    </div>
+      <label>GitHub:</label>
+      <input type="url" name="github" required>
+
+      <button type="submit">Send Email</button>
+    </form>
+
+    {% if status %}
+      <div class="status">
+        <strong>Status:</strong>
+        <p>{{ status | safe }}</p>
+      </div>
+    {% endif %}
+  </div>
 </body>
 </html>
